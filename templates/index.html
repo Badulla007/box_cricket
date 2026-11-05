@@ -1,0 +1,62 @@
+{% extends 'base.html' %}{% block title %}BOUNDARY — Find Your Turf. Book Your Game.{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-backdrop"></div>
+  <div class="container hero-content">
+    <div class="hero-copy"><div class="eyebrow eyebrow-light"><span></span> YOUR GAME. YOUR TURF.</div>
+      <h1>Find your turf.<br><em>Book your game.</em></h1>
+      <p>Discover nearby box cricket turfs, check live hourly availability and get your team together.</p>
+      <div class="hero-actions"><a class="btn btn-white" href="{{ url_for('turfs') }}">Explore box turfs <span>↗</span></a><a class="btn btn-glass" href="{{ url_for('turfs') }}#nearby">Find near me</a></div>
+      <div class="hero-proof"><div><strong>01</strong><span>Choose a local turf</span></div><div><strong>02</strong><span>Pick your time slot</span></div><div><strong>03</strong><span>Confirm your game</span></div></div>
+    </div>
+  </div>
+  <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+</section>
+<section class="container search-panel" id="search"><div class="search-intro"><div class="search-icon">⌖</div><div><b>Find a box cricket turf</b><span>Search a city, neighbourhood or locality.</span></div></div><form class="search-form" action="{{ url_for('turfs') }}" method="get"><input name="q" value="{{ search }}" placeholder="Try Madhapur, Kukatpally, Gachibowli…" aria-label="Search city or locality"><button class="btn btn-primary">Search turfs <span>→</span></button></form></section>
+<section class="section container"><div class="section-heading"><div><div class="eyebrow">PLAY CLOSER TO HOME</div><h2>Featured <em>box turfs</em></h2><p>Browse available facilities. Demo listings are clearly marked until you replace them with verified locations.</p></div><a class="text-link" href="{{ url_for('turfs') }}">View all turfs →</a></div>
+<div class="turf-grid">{% for turf in turfs %}<article class="turf-card"><a class="turf-image" href="{{ url_for('turf_detail',turf_id=turf.id) }}">{% if turf.image_url %}<img src="{{ turf.image_url }}" alt="{{ turf.name }}" loading="lazy">{% else %}<div class="image-fallback">BOUNDARY</div>{% endif %}<span class="image-tag">{{ turf.turf_kind }} box turf</span>{% if turf.is_demo %}<span class="demo-tag">Demo listing</span>{% endif %}</a><div class="turf-card-body"><div class="turf-card-top"><div><h3>{{ turf.name }}</h3><p>{{ turf.locality or turf.address }}, {{ turf.city }}</p></div><strong>{{ turf.price_per_hour|currency }}<small>/hr</small></strong></div><div class="turf-meta"><span>{{ turf.capacity }} players</span><span>{{ turf.surface }}</span></div><a class="card-link" href="{{ url_for('turf_detail',turf_id=turf.id) }}">View details & check slots <span>↗</span></a></div></article>{% else %}<div class="empty-state">No turfs match this search yet. Try another locality or check back soon.</div>{% endfor %}</div></section>
+<section class="soft-section"><div class="container"><div class="section-heading center-heading"><div><div class="eyebrow">THREE SIMPLE STEPS</div><h2>Your next game is <em>closer.</em></h2></div></div><div class="steps-grid"><article class="step-card"><span>01</span><h3>Find your turf</h3><p>Explore bookable box cricket facilities around your preferred area.</p></article><article class="step-card"><span>02</span><h3>Choose your slot</h3><p>Pick a date, duration and an available hourly start time.</p></article><article class="step-card"><span>03</span><h3>Bring your team</h3><p>Send your booking request and track confirmation in your account.</p></article></div></div></section>
+<section class="container bottom-cta"><div><div class="eyebrow">READY WHEN YOUR TEAM IS</div><h2>Make time for <em>one more over.</em></h2><p>Find a local box turf and lock in a time that works for your team.</p></div><a href="{{ url_for('turfs') }}" class="btn btn-primary">Find a turf <span>↗</span></a></section>
+<!-- BOUNDARY LOADING SCREEN -->
+<div id="boundary-loader" class="boundary-loader">
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+            <span class="loader-logo-icon">B</span>
+            <span class="loader-brand-name">
+                BOUNDARY<span>.</span>
+            </span>
+        </div>
+
+        <p class="loader-tagline">
+            YOUR GAME. YOUR TURF. YOUR BOUNDARY.
+        </p>
+
+        <!-- Cricket animation -->
+        
+      
+        <h2 class="loader-title">
+            Getting Your Game Ready
+        </h2>
+
+      <div class="intro-quote">
+
+
+    <p>
+        <strong>Small pitch, massive hits.</strong>
+        <span>Welcome to the fast lane of box cricket.</span>
+    </p>
+
+</div>
+        <div class="loader-progress">
+            <div class="loader-progress-fill"></div>
+        </div>
+
+        <p class="loader-footer">
+            BOX CRICKET · BOOK · PLAY · REPEAT
+        </p>
+
+    </div>
+</div>
+{% endblock %}

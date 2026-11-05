@@ -1,0 +1,45 @@
+
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Local databases
+instance/*.db
+instance/*.sqlite
+instance/*.sqlite3
+
+# Runtime uploads
+static/uploads/*
+!static/uploads/.gitkeep
+
+uploads/*
+!uploads/.gitkeep
+
+# Logs and testing
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Private credentials
+*.pem
+*.key
